@@ -7,7 +7,7 @@
   // 其他参数
   fallback: false,  // 字体缺失时使用 fallback，不显示豆腐块
   lang: "zh",
-  margin: (x: 92pt),
+  margin: auto,
   it,
 ) = {
   // 1.  默认参数
@@ -24,7 +24,7 @@
 
   // 3.  基本的样式设置
   set text(fallback: fallback, lang: lang)
-  set page(margin: margin)
+  set page(paper: "a4", margin: margin)
 
   // 4.  PDF 元信息
   set document(

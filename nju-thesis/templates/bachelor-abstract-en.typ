@@ -45,9 +45,8 @@
 
   // 4.  正式渲染
   [
-    #pagebreak(weak: true, to: if twoside { "odd" })
 
-    #set text(font: fonts.楷体, size: 字号.小四)
+    #set text(font: fonts.黑体, size: 字号.五号)
     #set par(leading: leading, justify: true)
     #show par: set block(spacing: spacing)
 
@@ -55,35 +54,20 @@
     #invisible-heading(level: 1, outlined: outlined, outline-title)
 
     #align(center)[
-      #set text(size: 字号.小二, weight: "bold")
+      #set text(font: fonts.黑体, size: 字号.三号, weight: "bold")  
+      #(("",)+ info.title-en).sum()
 
-      #double-underline[南京大学本科生毕业论文（设计、作品）英文摘要]
     ]
+    #v(2em)
 
-    #v(6pt)
-
-    THESIS: #info-value("title-en", (("",)+ info.title-en).sum())
-
-    DEPARTMENT: #info-value("department-en", info.department-en)
-
-    SPECIALIZATION: #info-value("major-en", info.major-en)
-
-    UNDERGRADUATE: #info-value("author-en", info.author-en)
-
-    MENTOR: #info-value("supervisor-en", info.supervisor-en) #(if info.supervisor-ii-en != "" [#h(1em) #info-value("supervisor-ii-en", info.supervisor-ii-en)])
-
-    ABSTRACT:
-
+    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[ABSTRACT:]
     #[
-      #set par(first-line-indent: 2em)
-
-      #fake-par
-      
       #body
     ]
 
     #v(1em)
 
-    KEYWORDS: #(("",)+ keywords.intersperse("; ")).sum()
+    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[Key words:]
+    #(("",)+ keywords.intersperse("; ")).sum()
   ]
 }

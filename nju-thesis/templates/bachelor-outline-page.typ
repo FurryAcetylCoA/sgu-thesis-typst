@@ -11,7 +11,7 @@
   depth: 3,
   title: "目　　录",
   outlined: true,
-  title-vspace: 32pt,
+  title-vspace: 8pt,
   title-text-args: auto,
   // 引用页数的字体，这里用于显示 Times New Roman
   reference-font: auto,
@@ -23,13 +23,13 @@
   vspace: (25pt, 14pt),
   indent: (0pt, 18pt, 28pt),
   // 一级标题不显示点号
-  fill: (none, auto),
+  fill: (auto, auto),
   ..args,
 ) = {
   // 1.  默认参数
   fonts = 字体 + fonts
   if (title-text-args == auto) {
-    title-text-args = (font: fonts.宋体, size: 字号.三号, weight: "bold")
+    title-text-args = (font: fonts.宋体, size: 字号.四号, weight: "bold")
   }
   // 引用页数的字体，这里用于显示 Times New Roman
   if (reference-font == auto) {

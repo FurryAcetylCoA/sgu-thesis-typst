@@ -1,4 +1,5 @@
 #import "nju-thesis/template.typ": documentclass, tablex, fig, tlt, indent
+#import "nju-thesis/utils/style.typ": 字号, 字体
 
 // 双面模式，会加入空白页，便于打印
 #let twoside = false
@@ -13,12 +14,14 @@
   // anonymous: true,  // 盲审模式
   twoside: twoside,  // 双面模式，会加入空白页，便于打印
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
-  // fonts: (楷体: ("Times New Roman", "FZKai-Z03S")),
+   fonts: (楷体: ("Times New Roman", "LXGW WenKai GB"),
+           仿宋: ("Times New Roman", "Zhuque Fangsong (technical preview)")),
+
   info: (
-    title: ("基于 Typst 的", "南京大学学位论文"),
+    title: ("基于ChatGPT的狗屁通生成器"),
     title-en: "My Title in English",
     grade: "20XX",
-    student-id: "1234567890",
+    student-id: "12356252222",
     author: "张三",
     author-en: "Ming Xing",
     department: "某学院",
@@ -37,14 +40,10 @@
 #show: doc
 
 // 字体展示测试页
-// #fonts-display-page()
+//#fonts-display-page()
 
 // 封面页
 #cover()
-
-// 声明页
-#decl-page()
-
 
 // 前言
 #show: preface
@@ -67,19 +66,15 @@
 #outline-page()
 
 // 插图目录
-#list-of-figures()
+//#list-of-figures()
 
 // 表格目录
-#list-of-tables()
+//#list-of-tables()
 
 // 正文
 #show: mainmatter
 
-// 符号表
-#notation[
-  / DFT: 密度泛函理论 (Density functional theory)
-  / DMRG: 密度矩阵重正化群密度矩阵重正化群密度矩阵重正化群 (Density-Matrix Reformation-Group)
-]
+
 
 = 基本功能
 
@@ -95,6 +90,7 @@
 - 无序列表项二
   - 无序子列表项一
   - 无序子列表项二
+  - 无序子列表项三
 
 === 有序列表
 
@@ -102,42 +98,63 @@
 + 有序列表项二
   + 有序子列表项一
   + 有序子列表项二
+  + 有序子列表项三
 
-=== 术语列表
-
-/ 术语一: 术语解释
-/ 术语二: 术语解释
 
 == 图表
 
-引用@tbl:timing，引用@tbl:timing-tlt，以及@fig:nju-logo。引用图表时，表格、图片和代码分别需要加上 `tbl:`、`fig:` 和 `lst:` 前缀才能正常显示编号。以及这里使用 `fig` 函数替代原生 `figure` 函数以支持将 `tablex` 作为表格来识别。
+引用@tbl:timing-tlt1,引用@tbl:timing-tlt，以及@fig:nju-logo。引用图表时，表格、图片和代码分别需要加上 `tbl:`、`fig:` 和 `lst:` 前缀才能正常显示编号。以及这里使用 `fig` 函数替代原生 `figure` 函数以支持将 `tablex` 作为表格来识别。
 
 #align(center, (stack(dir: ltr)[
   #fig(
-    tablex(
-      align: center + horizon,
-      columns: 4,
-      [t], [1], [2], [3],
-      [y], [0.3s], [0.4s], [0.8s],
+    tlt(
+      columns: 2,
+      [药品],   [规格],
+      [浓氨水],  [分析纯AR],
+      [盐酸],   [分析纯AR],
+      [钛酸四丁酯], [≥99.0%]
     ),
-    caption: [常规表],
-  ) <timing>
+    caption: [三线表1],
+  ) <timing-tlt1>
 ][
   #h(50pt)
 ][
   #fig(
     tlt(
       columns: 4,
+      map-cells: cell => {
+        if cell.y > 0 and cell.x > 0 {
+        cell.content = {
+          let value = int(cell.content.text)
+          let text-color = if value < 5 {
+            red.lighten(30%)
+          } else if value < 15 {
+            yellow.darken(13%)
+          } else {
+            green
+          }
+          set text(text-color)
+          strong(cell.content)
+        }
+      }
+      cell
+    },
       [t], [1], [2], [3],
-      [y], [0.3s], [0.4s], [0.8s],
+      [y], [3], [4], [9],
+      [3], [3], [17], [0],
     ),
-    caption: [三线表],
+    caption: [三线表2],
   ) <timing-tlt>
 ]))
 
+
+== 插图
+
+插图必须精心制作，线条均匀，图面整洁。插图位于正文中引用该插图字段的后面。每幅插图应有图序和图题，图序和图题应放在图位下方居中处
+
 #fig(
-  image("nju-thesis/assets/vi/nju-emblem.svg", width: 20%),
-  caption: [图片测试],
+  image("images/chatu.png", width: 60%),
+  caption: [二氧化钛光催化原理图],
 ) <nju-logo>
 
 
@@ -186,22 +203,19 @@ def add(x, y):
 }
 // 参考文献
 #bibliography(("bibs/ex01.bib", "bibs/ex02.bib"),
-  style: "ieee"
+  style: "./china-national-standard-gb-t-7714-2015-numeric.csl"
 )
 
 
-// 致谢
-#acknowledgement[
-  感谢 NJU-LUG，感谢 NJUThesis LaTeX 模板。
-]
+
+// 正文结束标志，不可缺少
+#mainmatter-end()
+
 
 // 手动分页
 #if (twoside) {
   pagebreak() + " "
 }
-
-// 正文结束标志，不可缺少
-#mainmatter-end()
 
 // 附录
 #show: appendix
@@ -218,3 +232,13 @@ def add(x, y):
   image("nju-thesis/assets/vi/nju-emblem.svg", width: 20%),
   caption: [图片测试],
 ) <appendix-img>
+
+// 手动分页
+#if (twoside) {
+  pagebreak() + " "
+}
+
+// 致谢
+#acknowledgement[
+  感谢 NJU-LUG，感谢 NJUThesis LaTeX 模板。
+]

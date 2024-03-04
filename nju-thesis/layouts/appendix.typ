@@ -1,15 +1,18 @@
 #import "@preview/i-figured:0.2.2"
 #import "../utils/custom-numbering.typ": custom-numbering
+#import "../utils/style.typ": 字号, 字体
 
 // 后记，重置 heading 计数器
 #let appendix(
-  numbering: custom-numbering.with(first-level: "附录 A ", depth: 3, "A.1 "),
+  fonts: (:),
+  numbering: custom-numbering.with(first-level: "", depth: 3, "A.1 "),
   // figure 计数
   show-figure: i-figured.show-figure.with(numbering: "A.1"),
   // equation 计数
   show-equation: i-figured.show-equation.with(numbering: "(A.1)"),
   it,
 ) = {
+  fonts = 字体 + fonts
   set heading(numbering: numbering)
   counter(heading).update(0)
   // 设置 figure 的编号

@@ -11,17 +11,17 @@
   twoside: false,
   fonts: (:),
   // 其他参数
-  leading: 1.25em,
+  leading: 1.5em,
   spacing: 1.25em,
   justify: true,
   first-line-indent: 2em,
-  numbering: custom-numbering.with(first-level: "第一章 ", depth: 3, "1.1 "),
+  numbering: custom-numbering.with(first-level: "", depth: 3, "1.1 "),
   // 正文字体与字号参数
   text-args: auto,
   // 标题字体与字号
   heading-font: auto,
-  heading-size: (字号.四号,),
-  heading-weight: ("regular",),
+  heading-size: (字号.小二, 字号.小三, 字号.小四),
+  heading-weight: ("bold", "bold", "regular"),
   heading-top-vspace: (20pt, 4pt),
   heading-bottom-vspace: (20pt, 8pt),
   heading-pagebreak: (true, false),
@@ -83,6 +83,15 @@
   show figure.where(
     kind: table
   ): set figure.caption(position: top)
+
+  show figure.where(
+    kind: image
+  ): set figure(gap: 1em)
+  
+  show figure.where(
+    kind: table
+  ): set figure(gap: 1.5em)
+  
   set figure.caption(separator: separator)
   // 3.6 优化列表显示
   //     术语列表 terms 不应该缩进

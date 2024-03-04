@@ -12,13 +12,12 @@
   info: (:),
   // 其他参数
   stoke-width: 0.5pt,
-  min-title-lines: 2,
+  min-title-lines: 1,
   info-inset: (x: 0pt, bottom: 1pt),
-  info-key-width: 74pt,
+  info-key-width: 100pt,
   column-gutter: -8pt,
   row-gutter: 1pt,
   anonymous-info-keys: ("grade", "student-id", "author", "supervisor", "supervisor-ii"),
-  bold-info-keys: ("title",),
   bold-level: "bold",
   datetime-display: datetime-display,
 ) = {
@@ -53,21 +52,20 @@
       width: 100%,
       inset: info-inset,
       stroke: none,
-      text(font: fonts.楷体, size: 字号.三号, body),
+      text(font: fonts.宋体, size: 字号.四号,weight: bold-level, body),
     )
   }
 
   let info-value(key, body) = {
-    set align(center)
+    set align(left)
     rect(
       width: 100%,
       inset: info-inset,
-      stroke: (bottom: stoke-width + black),
+      stroke: none,
       text(
         font: fonts.宋体,
-        size: 字号.三号,
-        weight: if (key in bold-info-keys) { bold-level } else { "regular" },
-        bottom-edge: "descender",
+        size: 字号.四号,
+        weight: bold-level,
         body,
       ),
     )
@@ -109,17 +107,14 @@
   if (anonymous) {
     v(70pt)
   } else {
-    // 封面图标
-    v(6pt)
-    image("../assets/vi/nju-emblem.svg", width: 2.38cm)
-    v(22pt)
-    // 调整一下左边的间距
-    pad(image("../assets/vi/nju-name.svg", width: 10.5cm), left: 0.4cm)
     v(20pt)
+    // 调整一下左边的间距
+    pad(image("../assets/vi/sgu.png", width: 5.8cm), left: 0.4cm)
+    v(5pt)
   }
 
   // 将中文之间的空格间隙从 0.25 em 调整到 0.5 em
-  text(size: 字号.一号, font: fonts.宋体, spacing: 200%, weight: "bold")[本 科 毕 业 论 文]
+  text(size: 字号.初号, font: fonts.宋体, spacing: 250%, weight: "bold")[毕 业 设 计]
   
   if (anonymous) {
     v(132pt)
@@ -127,33 +122,27 @@
     v(44pt)
   }
 
-  block(width: 300pt, gridx(
+  block(width: auto, gridx(
     columns: (info-key-width, 1fr, info-key-width, 1fr),
     column-gutter: column-gutter,
     row-gutter: row-gutter,
-    info-key("院　　系"),
-    info-long-value("department", info.department),
-    info-key("专　　业"),
-    info-long-value("major", info.major),
-    info-key("题　　目"),
+    info-key("题　　目："),
     ..info.title.map((s) => info-long-value("title", s)).intersperse(info-key("　")),
-    info-key("年　　级"),
-    info-short-value("grade", info.grade),
-    info-key("学　　号"),
-    info-short-value("student-id", info.student-id),
-    info-key("学生姓名"),
-    info-long-value("author", info.author),
-    info-key("指导教师"),
+    info-key("学生姓名："),
+    info-long-value("author", info.author),    
+      info-key("学　　号:"),
+    info-long-value("student-id", info.student-id),
+    info-key("二级学院："),
+    info-long-value("department", info.department),
+    info-key("专　　业:"),
+    info-long-value("major", info.major),
+    info-key("班　　级:"),
+    info-long-value("grade", info.grade),
+    info-key("指导教师:"),
     info-short-value("supervisor", info.supervisor.at(0)),
     info-key("职　　称"),
     info-short-value("supervisor", info.supervisor.at(1)),
-    ..(if info.supervisor-ii != () {(
-      info-key("第二导师"),
-      info-short-value("supervisor-ii", info.supervisor-ii.at(0)),
-      info-key("职　　称"),
-      info-short-value("supervisor-ii", info.supervisor-ii.at(1)),
-    )} else {()}),
-    info-key("提交日期"),
+    info-key("起止时间"),
     info-long-value("submit-date", info.submit-date),
   ))
 }

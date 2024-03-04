@@ -114,6 +114,7 @@
     appendix: (..args) => {
       appendix(
         ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
       )
     },
 
