@@ -1,0 +1,20 @@
+某在线报告:
+    type: Report
+    title: 2023年中国大陆月面抛光人才供需报告
+    year: 2022
+    url: https://www.cameronsworld.net/
+    author: [cameronaskin]
+
+某期刊文章:
+    type: Article
+    author: [张四, 李五, 赵六]
+    title: 不基于ChatGPT的狗屁不通生成器
+    date: 2019
+    page-range: 42-48
+    parent:
+        type: Periodical
+        title: 人工与智能
+        volume: 15
+        issue: 10
+        
+

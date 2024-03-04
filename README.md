@@ -8,19 +8,10 @@
 
 ![](images/editor.png)
 
-## 劣势
 
-- Typst 是一门新生的排版标记语言，还做不到像 Word 或 LaTeX 一样成熟稳定。
+## 关于Typst
 
-
-## 优势
-
-Typst 是可用于出版的可编程标记语言，拥有变量、函数与包管理等现代编程语言的特性，注重于科学写作 (science writing)，定位与 LaTeX 相似。可以阅读原作者的 [一篇知乎文章](https://zhuanlan.zhihu.com/p/669097092) 进一步了解 Typst 的优势。
-
-- **语法简洁**：上手难度跟 Markdown 相当，文本源码阅读性高，不会像 LaTeX 一样充斥着反斜杠与花括号。
-- **编译速度快**：Typst 使用 Rust 语言编写，即 typ(e+ru)st，目标运行平台是WASM，即浏览器本地离线运行；也可以编译成命令行工具，采用一种 **增量编译** 算法和一种有约束的版面缓存方案，**文档长度基本不会影响编译速度，且编译速度与常见 Markdown 渲染引擎渲染速度相当**。
-- **环境搭建简单**：不需要像 LaTeX 一样折腾几个 G 的开发环境，原生支持中日韩等非拉丁语言，无论是官方 Web App 在线编辑，还是使用 VS Code 安装插件本地开发，都是 **即开即用**。
-- **现代编程语言**：Typst 是可用于出版的可编程标记语言，拥有 **变量、函数、包管理与错误检查** 等现代编程语言的特性，同时也提供了 **闭包** 等特性，便于进行 **函数式编程**。以及包括了 `[标记模式]`、`{脚本模式}` 与 `$数学模式$` 等多种模式的作用域，并且它们可以不限深度地、交互地嵌套。并且通过 **包管理**，你不再需要像 TexLive 一样在本地安装一大堆并不必要的宏包，而是 **按需自动从云端下载**。
+可以阅读原作者的 [一篇知乎文章](https://zhuanlan.zhihu.com/p/669097092) 进一步了解 Typst。
 
 可以参考 [Typst 中文文档网站](https://typst-doc-cn.github.io/docs/) 迅速入门。
 
@@ -48,52 +39,6 @@ Fork作者注：我已经按照`韶关学院毕业论文（设计）基本规范
     - 也推荐下载 [Typst Companion](https://marketplace.visualstudio.com/items?itemName=CalebFiggers.typst-companion) 插件，其提供了例如 `Ctrl + B` 进行加粗等便捷的快捷键。
     - 你还可以下载 [Typst Sync](https://marketplace.visualstudio.com/items?itemName=OrangeX4.vscode-typst-sync) 和 [Typst Sympy Calculator](https://marketplace.visualstudio.com/items?itemName=OrangeX4.vscode-typst-sympy-calculator) 插件，前者提供了本地包的云同步功能，后者提供了基于 Typst 语法的科学计算器功能。
 4. 按下 `Shift + Ctrl + P`，然后输入命令 `Typst Preview: Preview current file`，即可 **同步增量渲染与预览**，还提供了 **光标双向定位功能**。
-
-
-
-### 特性 / 路线图
-
-- **说明文档**
-    - [ ] 编写更详细的说明文档，后续考虑使用 [tidy](https://github.com/typst/packages/tree/main/packages/preview/tidy/0.1.0) 编写，你现在可以先参考 [NJUThesis](https://mirror-hk.koddos.net/CTAN/macros/unicodetex/latex/njuthesis/njuthesis.pdf) 的文档，参数大体保持一致，或者直接查阅对应源码函数的参数
-- **类型检查**
-    - [ ] 应该对所有函数入参进行类型检查，及时报错
-- **全局配置**
-    - [x] 类似 LaTeX 中的 `documentclass` 的全局信息配置
-    - [x] **盲审模式**，将个人信息替换成小黑条，并且隐藏致谢页面，论文提交阶段使用 
-    - [x] **双面模式**，会加入空白页，便于打印
-    - [x] **自定义字体配置**，可以配置「宋体」、「黑体」与「楷体」等字体对应的具体字体
-        - [ ] **字体解耦合**：将字体配置进一步解耦合，让用到字体的地方加上一层字体名称配置项（从「标题（宋体）」-「具体字体」重构为「标题」-「宋体」-「具体字体」）
-    - [x] **数学字体配置**：模板不提供配置，用户可以自己使用 `#show math.equation: set text(font: "Fira Math")` 更改
-- **模板**
-  - [x] 本科生模板
-    - [x] 字体测试页
-    - [x] 封面
-    - [x] 声明页
-    - [x] 中文摘要
-    - [x] 英文摘要
-    - [x] 目录页
-    - [x] 插图目录
-    - [x] 表格目录
-    - [x] 符号表
-    - [x] 致谢
-  - [x] 研究生模板
-    - [x] 封面 
-    - [x] 声明页 
-    - [x] 摘要
-    - [x] 页眉 
-    - [ ] 国家图书馆封面
-    - [ ] 出版授权书
-  - [ ] 博士后模板
-- **编号**
-    - [x] 前言使用罗马数字编号
-    - [x] 附录使用罗马数字编号
-    - [x] 表格使用 `1.1` 格式进行编号
-    - [x] 数学公式使用 `(1.1)` 格式进行编号
-- **环境**
-    - [ ] 定理环境（这个也可以自己使用第三方包配置）
-- **其他文件**
-    - [x] 本科生开题报告
-    - [x] 研究生开题报告
 
 
 ## Q&A
@@ -164,7 +109,7 @@ Fork作者注：我已经按照`韶关学院毕业论文（设计）基本规范
 
 ### 我如何更改页面上的样式？具体的语法是怎么样的？
 
-请见原始项目[文档](https://github.com/FurryAcetylCoA/sgu-thesis-typst?tab=readme-ov-file
+请见原始项目[文档](https://github.com/FurryAcetylCoA/sgu-thesis-typst?tab=readme-ov-file)
 
 
 ### 该模板和其他现存 Typst 中文论文模板的区别？

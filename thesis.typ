@@ -9,8 +9,6 @@
   doc, preface, mainmatter, mainmatter-end, appendix,
   fonts-display-page, cover, decl-page, abstract, abstract-en, outline-page, list-of-figures, list-of-tables, notation, acknowledgement,
 ) = documentclass(
-  // type: "bachelor",  // "bachelor" | "master" | "doctor" | "postdoc", 文档类型，默认为本科生 bachelor
-  // degree: "academic",  // "academic" | "professional", 学位类型，默认为学术型 academic
   // anonymous: true,  // 盲审模式
   twoside: twoside,  // 双面模式，会加入空白页，便于打印
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
@@ -125,11 +123,8 @@
       map-cells: cell => {
         if cell.y > 0 and cell.x > 0 {
         cell.content = {
-          let value = int(cell.content.text)
-          let text-color = if value < 5 {
+          let text-color = if int(cell.content.text) < 5 {
             red.lighten(30%)
-          } else if value < 15 {
-            yellow.darken(13%)
           } else {
             green
           }
@@ -143,7 +138,7 @@
       [y], [3], [4], [9],
       [3], [3], [17], [0],
     ),
-    caption: [三线表2],
+    caption: [三线表 - 着色],
   ) <timing-tlt>
 ]))
 
@@ -178,7 +173,8 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
 == 参考文献
 
-可以像这样引用参考文献：@wang2010guide 和 @kopka2004guide。
+可以像这样引用参考文献：@wang2010guide。某期刊文章@某期刊文章
+
 
 == 代码块
 
@@ -202,7 +198,7 @@ def add(x, y):
   pagebreak() + " "
 }
 // 参考文献
-#bibliography(("bibs/ex01.bib", "bibs/ex02.bib"),
+#bibliography(("bibs/ex01.bib", "bibs/ymlex.yml"),
   style: "./china-national-standard-gb-t-7714-2015-numeric.csl"
 )
 
@@ -240,5 +236,5 @@ def add(x, y):
 
 // 致谢
 #acknowledgement[
-  感谢 NJU-LUG，感谢 NJUThesis LaTeX 模板。
+  感谢 NJU-LUG，提供 NJUThesis Typst 模板。
 ]

@@ -1,7 +1,7 @@
-// 南京大学学位论文模板 nju-thesis-typst
+// 韶关学院学位论文模板 sgu-thesis-typst
 // Author: https://github.com/OrangeX4
-// Repo: https://github.com/nju-lug/nju-thesis-typst
-// 在线模板可能不会更新得很及时，如果需要最新版本，请关注 Repo
+// Author: https://github.com/FurryAcetylCoA
+// Repo: https://github.com/FurryAcetylCoA/sgu-thesis-typst
 
 #import "@preview/anti-matter:0.0.2": anti-inner-end as mainmatter-end
 #import "layouts/doc.typ": doc
@@ -43,7 +43,7 @@
   // 默认参数
   fonts = 字体 + fonts
   info = (
-    title: ("基于 Typst 的", "南京大学学位论文"),
+    title: ("基于 Typst 的", "韶关学院学位论文"),
     title-en: "NJU Thesis Template for Typst",
     grade: "20XX",
     student-id: "1234567890",
@@ -130,6 +130,7 @@
     // 封面页，通过 type 分发到不同函数
     cover: (..args) => {
       if type == "master" or type == "doctor" {
+        panic("master / doctor has not yet been implemented.")
         master-cover(
           type: type,
           degree: degree,
