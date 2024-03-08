@@ -4,6 +4,8 @@
 
 源自[南京大学学位论文](https://github.com/nju-lug/nju-thesis-typst).
 
+快速浏览效果: 查看 [thesis.pdf](https://github.com/FurryAcetylCoA/sgu-thesis-typst/blob/main/thesis.pdf)，样例论文源码：查看 [thesis.typ](https://github.com/FurryAcetylCoA/sgu-thesis-typst/blob/main/thesis.typ)
+
 详细说明请见原始项目
 
 ![](images/editor.png)
@@ -18,27 +20,23 @@
 
 ## 使用
 
-快速浏览效果: 查看 [thesis.pdf](https://github.com/FurryAcetylCoA/sgu-thesis-typst/blob/main/thesis.pdf)，样例论文源码：查看 [thesis.typ](https://github.com/FurryAcetylCoA/sgu-thesis-typst/blob/main/thesis.typ)
 
-**你只需要修改根目录下的 `thesis.typ` 文件即可，基本可以满足你的所有需求，`nju-thesis` 目录下的代码可以用于参数查阅，但是理论上你不应该对其进行更改。**
-
-Fork作者注：我已经按照`韶关学院毕业论文（设计）基本规范`修改过里面的东西了
-
-如果你认为不能满足你的需求，可以先查阅后面的 [Q&A](#Q%26A) 部分。
-
-### 在线编辑
-
-请见原始项目[文档](https://github.com/FurryAcetylCoA/sgu-thesis-typst?tab=readme-ov-file#%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91)
-
-
-### 本地编辑（推荐）
+### 本地编辑
 
 1. 克隆本项目，或者直接通过绿色的Code按钮-> Download zip下载然后解压。
 2. 在 [VS Code](https://code.visualstudio.com/) 中打开该目录。
 3. 在 VS Code 中安装 [Typst LSP](https://marketplace.visualstudio.com/items?itemName=nvarner.typst-lsp) 和 [Typst Preview](https://marketplace.visualstudio.com/items?itemName=mgt19937.typst-preview) 插件。前者负责语法高亮和错误检查，后者负责预览。
     - 也推荐下载 [Typst Companion](https://marketplace.visualstudio.com/items?itemName=CalebFiggers.typst-companion) 插件，其提供了例如 `Ctrl + B` 进行加粗等便捷的快捷键。
     - 你还可以下载 [Typst Sync](https://marketplace.visualstudio.com/items?itemName=OrangeX4.vscode-typst-sync) 和 [Typst Sympy Calculator](https://marketplace.visualstudio.com/items?itemName=OrangeX4.vscode-typst-sympy-calculator) 插件，前者提供了本地包的云同步功能，后者提供了基于 Typst 语法的科学计算器功能。
-4. 按下 `Shift + Ctrl + P`，然后输入命令 `Typst Preview: Preview current file`，即可 **同步增量渲染与预览**，还提供了 **光标双向定位功能**。
+4. 在 VS Code 中打开 `thesis.typ`
+5. 按下 `Shift + Ctrl + P`，然后输入命令 `Typst Preview: Preview current file`，即可在侧栏 **同步渲染论文输出**，还提供了 **光标双向定位功能**。
+
+
+**你只需要修改根目录下的 `thesis.typ` 文件即可，基本可以满足你的所有需求，`nju-thesis` 目录下的代码可以用于参数查阅，但是理论上你不应该对其进行更改。**
+
+Fork作者注：我已经按照`韶关学院毕业论文（设计）基本规范`修改过里面的东西了
+
+如果你认为不能满足你的需求，可以先查阅后面的 [Q&A](#Q%26A) 部分。
 
 
 ## Q&A
