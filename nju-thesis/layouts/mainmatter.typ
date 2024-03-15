@@ -91,9 +91,22 @@
   show figure.where(
     kind: table
   ): set figure(gap: 1.5em)
-  
+    
   set figure.caption(separator: separator)
-  // 3.6 优化列表显示
+
+  // 3.6 代码块不使用居中对齐
+  show figure.where(kind: "i-figured-raw"): it => {
+    let dic = it.fields()
+    let _ = if "body" in dic { dic.remove("body") }
+    let _ = if "label" in dic { dic.remove("label") }
+    let _ = if "counter" in dic { dic.remove("counter") }
+
+  let fig = figure(text(par(it.body,justify: false,leading:0.65em),size: 12pt),
+      ..dic,kind: "f" + repr(it.kind))
+  fig
+}
+
+  // 3.7 优化列表显示
   //     术语列表 terms 不应该缩进
   show terms: set par(first-line-indent: 0pt)
 
