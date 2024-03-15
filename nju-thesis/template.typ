@@ -59,7 +59,8 @@
     supervisor-en: "Professor Li Si",
     supervisor-ii: (),
     supervisor-ii-en: "",
-    submit-date: datetime.today(),
+    begin-date: datetime.today(),
+    end-date: datetime.today(),
     // 以下为研究生项
     defend-date: datetime.today(),
     confer-date: datetime.today(),

@@ -30,7 +30,8 @@
     supervisor-en: "Professor My Supervisor",
     // supervisor-ii: ("王五", "副教授"),
     // supervisor-ii-en: "Professor My Supervisor",
-    submit-date: datetime.today(),
+    begin-date: datetime(year: 2049,month: 8,day: 31),
+    end-date:   datetime(year: 2049,month: 12,day: 2)
   ),
 )
 

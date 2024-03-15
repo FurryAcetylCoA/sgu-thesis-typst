@@ -14,8 +14,9 @@
   stoke-width: 0.5pt,
   min-title-lines: 1,
   info-inset: (x: 0pt, bottom: 1pt),
-  info-key-width: 100pt,
-  column-gutter: -8pt,
+  info-width: 150pt,
+  key-width: 80pt,
+  column-gutter: 0pt,
   row-gutter: 1pt,
   anonymous-info-keys: ("grade", "student-id", "author", "supervisor", "supervisor-ii"),
   bold-level: "bold",
@@ -31,7 +32,8 @@
     department: "某学院",
     major: "某专业",
     supervisor: ("李四", "教授"),
-    submit-date: datetime.today(),
+    begin-date: datetime.today(),
+    end-date: datetime.today(),
   ) + info
 
   // 2.  对参数进行处理
@@ -42,8 +44,11 @@
   // 2.2 根据 min-title-lines 填充标题
   info.title = info.title + range(min-title-lines - info.title.len()).map((it) => "　")
   // 2.3 处理提交日期
-  if (is.type(datetime, info.submit-date)) {
-    info.submit-date = datetime-display(info.submit-date)
+  if (is.type(datetime, info.begin-date)) {
+    info.begin-date = datetime-display(info.begin-date)
+  }
+  if (is.type(datetime, info.end-date)) {
+    info.end-date = datetime-display(info.end-date)
   }
 
   // 3.  内置辅助函数
@@ -53,6 +58,12 @@
       inset: info-inset,
       stroke: none,
       text(font: fonts.宋体, size: 字号.四号,weight: bold-level, body),
+    )
+  }
+
+  let info-long-key(body) = {
+    colspanx(2,
+      info-key(body)
     )
   }
 
@@ -85,13 +96,15 @@
   }
 
   let info-short-value(key, body) = {
-    info-value(
-      key,
-      if (anonymous and (key in anonymous-info-keys)) {
-        "█████"
-      } else {
-        body
-      }
+    colspanx(2,
+      info-value(
+        key,
+        if (anonymous and (key in anonymous-info-keys)) {
+          "██████████"
+        } else {
+          body
+        }
+      )
     )
   }
   
@@ -107,30 +120,31 @@
   if (anonymous) {
     v(70pt)
   } else {
-    v(20pt)
-    // 调整一下左边的间距
-    pad(image("../assets/vi/sgu.png", width: 5.8cm), left: 0.4cm)
-    v(5pt)
+    v(25pt)
+    // 调整一下右边的间距
+    image("../assets/vi/sgu.png", width: 5.8cm)
+    v(2pt)
   }
 
-  // 将中文之间的空格间隙从 0.25 em 调整到 0.5 em
-  text(size: 字号.初号, font: fonts.宋体, spacing: 250%, weight: "bold")[毕 业 设 计]
+
+  text(size: 字号.初号, font: fonts.宋体, spacing: 200%, weight: "bold")[毕 业 设 计]
   
   if (anonymous) {
     v(132pt)
   } else {
-    v(44pt)
+    v(120pt)
   }
 
-  block(width: auto, gridx(
-    columns: (info-key-width, 1fr, info-key-width, 1fr),
+  block(width: 85%, gridx(
+
+    columns: (key-width, 1fr, info-width, 1fr),
     column-gutter: column-gutter,
     row-gutter: row-gutter,
     info-key("题　　目："),
     ..info.title.map((s) => info-long-value("title", s)).intersperse(info-key("　")),
     info-key("学生姓名："),
     info-long-value("author", info.author),    
-      info-key("学　　号:"),
+    info-key("学　　号:"),
     info-long-value("student-id", info.student-id),
     info-key("二级学院："),
     info-long-value("department", info.department),
@@ -138,11 +152,13 @@
     info-long-value("major", info.major),
     info-key("班　　级:"),
     info-long-value("grade", info.grade),
-    info-key("指导教师:"),
-    info-short-value("supervisor", info.supervisor.at(0)),
-    info-key("职　　称"),
-    info-short-value("supervisor", info.supervisor.at(1)),
-    info-key("起止时间"),
-    info-long-value("submit-date", info.submit-date),
+    info-long-key("指导教师姓名及职称:"),
+    info-short-value("supervisor", info.supervisor.join("　　")),
+    info-key("起止时间:"),
+    info-long-value("begin-time", info.begin-date + "　——　" +info.end-date)
   ))
+
+  v(80pt)
+
+  text(size: 字号.五号, font: fonts.宋体)[（教务处制）]
 }
