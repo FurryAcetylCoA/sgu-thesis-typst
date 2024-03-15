@@ -10,13 +10,8 @@
 #import "layouts/appendix.typ": appendix
 #import "templates/fonts-display-page.typ": fonts-display-page
 #import "templates/bachelor-cover.typ": bachelor-cover
-#import "templates/master-cover.typ": master-cover
-#import "templates/bachelor-decl-page.typ": bachelor-decl-page
-#import "templates/master-decl-page.typ": master-decl-page
 #import "templates/bachelor-abstract.typ": bachelor-abstract
-#import "templates/master-abstract.typ": master-abstract
 #import "templates/bachelor-abstract-en.typ": bachelor-abstract-en
-#import "templates/master-abstract-en.typ": master-abstract-en
 #import "templates/bachelor-outline-page.typ": bachelor-outline-page
 #import "templates/list-of-figures.typ": list-of-figures
 #import "templates/list-of-tables.typ": list-of-tables
@@ -32,9 +27,6 @@
 
 // 使用函数闭包特性，通过 `documentclass` 函数类进行全局信息配置，然后暴露出拥有了全局配置的、具体的 `layouts` 和 `templates` 内部函数。
 #let documentclass(
-  type: "bachelor",  // "bachelor" | "master" | "doctor" | "postdoc"，文档类型，默认为本科生 bachelor
-  degree: "academic",  // "academic" | "professional"，学位类型，默认为学术型 academic
-  nl-cover: false,  // TODO: 是否使用国家图书馆封面，默认关闭
   twoside: false,  // 双面模式，会加入空白页，便于打印
   anonymous: false,  // 盲审模式
   fonts: (:),  // 字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
@@ -44,7 +36,7 @@
   fonts = 字体 + fonts
   info = (
     title: ("基于 Typst 的", "韶关学院学位论文"),
-    title-en: "NJU Thesis Template for Typst",
+    title-en: "SGU Thesis Template for Typst",
     grade: "20XX",
     student-id: "1234567890",
     author: "张三",
@@ -61,20 +53,6 @@
     supervisor-ii-en: "",
     begin-date: datetime.today(),
     end-date: datetime.today(),
-    // 以下为研究生项
-    defend-date: datetime.today(),
-    confer-date: datetime.today(),
-    bottom-date: datetime.today(),
-    chairman: "某某某 教授",
-    reviewer: ("某某某 教授", "某某某 教授"),
-    clc: "O643.12",
-    udc: "544.4",
-    secret-level: "公开",
-    supervisor-contact: "南京大学 江苏省南京市栖霞区仙林大道163号",
-    email: "xyz@smail.nju.edu.cn",
-    school-code: "10284",
-    degree: auto,
-    degree-en: auto,
   ) + info
 
   (
@@ -92,20 +70,11 @@
       )
     },
     mainmatter: (..args) => {
-      if type == "master" or type == "doctor" {
-        mainmatter(
-          twoside: twoside,
-          display-header: true,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-        )
-      } else {
-        mainmatter(
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-        )
-      }
+      mainmatter(
+        twoside: twoside,
+        ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
+      )
     },
     mainmatter-end: (..args) => {
       mainmatter-end(
@@ -128,103 +97,37 @@
       )
     },
 
-    // 封面页，通过 type 分发到不同函数
+    // 封面页
     cover: (..args) => {
-      if type == "master" or type == "doctor" {
-        panic("master / doctor has not yet been implemented.")
-        master-cover(
-          type: type,
-          degree: degree,
-          nl-cover: nl-cover,
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      } else if type == "postdoc" {
-        panic("postdoc has not yet been implemented.")
-      } else {
-        bachelor-cover(
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      }
-    },
-
-    // 声明页，通过 type 分发到不同函数
-    decl-page: (..args) => {
-      if type == "master" or type == "doctor" {
-        master-decl-page(
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-        )
-      } else if type == "postdoc" {
-        panic("postdoc has not yet been implemented.")
-      } else {
-        bachelor-decl-page(
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      }
+      bachelor-cover(
+        anonymous: anonymous,
+        twoside: twoside,
+        ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
+        info: info + args.named().at("info", default: (:)),
+      )
     },
     
-    // 中文摘要页，通过 type 分发到不同函数
+    // 中文摘要页
     abstract: (..args) => {
-      if type == "master" or type == "doctor" {
-        master-abstract(
-          type: type,
-          degree: degree,
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      } else if type == "postdoc" {
-        panic("postdoc has not yet been implemented.")
-      } else {
-        bachelor-abstract(
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      }
+      bachelor-abstract(
+        anonymous: anonymous,
+        twoside: twoside,
+        ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
+        info: info + args.named().at("info", default: (:)),
+      )
     },
 
-    // 英文摘要页，通过 type 分发到不同函数
+    // 英文摘要页
     abstract-en: (..args) => {
-      if type == "master" or type == "doctor" {
-        master-abstract-en(
-          type: type,
-          degree: degree,
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      } else if type == "postdoc" {
-        panic("postdoc has not yet been implemented.")
-      } else {
-        bachelor-abstract-en(
-          anonymous: anonymous,
-          twoside: twoside,
-          ..args,
-          fonts: fonts + args.named().at("fonts", default: (:)),
-          info: info + args.named().at("info", default: (:)),
-        )
-      }
+      bachelor-abstract-en(
+        anonymous: anonymous,
+        twoside: twoside,
+        ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
+        info: info + args.named().at("info", default: (:)),
+      )
     },
 
     // 目录页

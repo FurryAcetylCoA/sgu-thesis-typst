@@ -18,7 +18,7 @@
   key-width: 80pt,
   column-gutter: 0pt,
   row-gutter: 1pt,
-  anonymous-info-keys: ("grade", "student-id", "author", "supervisor", "supervisor-ii"),
+  anonymous-info-keys: ("grade", "student-id", "author", "supervisor"),
   bold-level: "bold",
   datetime-display: datetime-display,
 ) = {

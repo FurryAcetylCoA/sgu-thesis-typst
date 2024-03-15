@@ -15,7 +15,7 @@
   keywords: (),
   outline-title: "中文摘要",
   outlined: true,
-  anonymous-info-keys: ("author", "supervisor", "supervisor-ii"),
+  anonymous-info-keys: ("author", "supervisor"),
   leading: 1.08em,
   spacing: 1.08em,
   body,
@@ -23,7 +23,7 @@
   // 1.  默认参数
   fonts = 字体 + fonts
   info = (
-    title: ("基于 Typst 的", "南京大学学位论文"),
+    title: ("基于ChatGPT的狗屁通生成器"),
     author: "张三",
     department: "某学院",
     major: "某专业",

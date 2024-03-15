@@ -7,7 +7,7 @@
 
 #let (
   doc, preface, mainmatter, mainmatter-end, appendix,
-  fonts-display-page, cover, decl-page, abstract, abstract-en, outline-page, list-of-figures, list-of-tables, notation, acknowledgement,
+  fonts-display-page, cover, abstract, abstract-en, outline-page, list-of-figures, list-of-tables, notation, acknowledgement,
 ) = documentclass(
   // anonymous: true,  // 盲审模式
   twoside: twoside,  // 双面模式，会加入空白页，便于打印
@@ -28,8 +28,6 @@
     major-en: "Chemistry",
     supervisor: ("李四", "教授"),
     supervisor-en: "Professor My Supervisor",
-    // supervisor-ii: ("王五", "副教授"),
-    // supervisor-ii-en: "Professor My Supervisor",
     begin-date: datetime(year: 2049,month: 8,day: 31),
     end-date:   datetime(year: 2049,month: 12,day: 2)
   ),

@@ -15,7 +15,7 @@
   keywords: (),
   outline-title: "ABSTRACT",
   outlined: true,
-  anonymous-info-keys: ("author-en", "supervisor-en", "supervisor-ii-en"),
+  anonymous-info-keys: ("author-en", "supervisor-en"),
   leading: 1.28em,
   spacing: 1.28em,
   body,
@@ -23,7 +23,7 @@
   // 1.  默认参数
   fonts = 字体 + fonts
   info = (
-    title-en: "NJU Thesis Template for Typst",
+    title-en: "non-Bullsh*t generatoe with ChatGPT",
     author-en: "Zhang San",
     department-en: "XX Department",
     major-en: "XX Major",
