@@ -177,10 +177,13 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
 == 代码块
 
+代码块支持语法高亮。引用 @lst:code
+
+#fig(
 ```py
 def add(x, y):
   return x + y
-```
+```, caption:[高深莫测的编程语言]) <code>
 
 
 = 正文
