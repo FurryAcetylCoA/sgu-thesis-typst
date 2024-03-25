@@ -122,7 +122,7 @@
   } else {
     v(25pt)
     // 调整一下右边的间距
-    image("../assets/vi/sgu.png", width: 5.8cm)
+    image("../assets/vi/sgu.svg", width: 5.8cm)
     v(2pt)
   }
 
