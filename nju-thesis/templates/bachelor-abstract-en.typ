@@ -57,7 +57,7 @@
     ]
     #v(2em)
 
-    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[ABSTRACT:]
+    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[Abstract:]
     #[
       #body
     ]
