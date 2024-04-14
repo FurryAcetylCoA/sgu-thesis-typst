@@ -51,9 +51,6 @@
     #set par(leading: leading, justify: true)
     #show par: set block(spacing: spacing)
 
-    // 标记一个不可见的标题用于目录生成
-    #invisible-heading(level: 1, outlined: outlined, outline-title)
-
     #align(center)[
       #set text(font: fonts.黑体, size: 字号.小二, weight: "bold")  
       #(("",)+ info.title).sum()

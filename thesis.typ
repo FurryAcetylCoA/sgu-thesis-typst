@@ -28,8 +28,8 @@
     major-en: "Chemistry",
     supervisor: ("李四", "教授"),
     supervisor-en: "Professor My Supervisor",
-    begin-date: datetime(year: 2049,month: 8,day: 31),
-    end-date:   datetime(year: 2049,month: 12,day: 2)
+    begin-date: datetime(year: 2049,month: 8, day:8),
+    end-date:   datetime(year: 2049,month: 12, day:12)
   ),
 )
 
@@ -51,6 +51,8 @@
 )[
   中文摘要
 ]
+
+#pagebreak()
 
 // 英文摘要
 #abstract-en(

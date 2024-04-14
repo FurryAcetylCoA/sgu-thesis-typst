@@ -18,7 +18,9 @@
 // 三线表，包含居中，使用 tablex 实现
 #let tlt(..args) = tablex(
   auto-lines: false,
-  align: center + horizon,
+  align: (x, y) =>
+    horizon +
+    if y == 0 { center } else { left },
   hlinex(y: 0, stroke: +1.5pt),
   hlinex(y: 1),
   

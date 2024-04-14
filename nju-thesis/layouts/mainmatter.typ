@@ -10,22 +10,23 @@
   // documentclass 传入参数
   twoside: false,
   fonts: (:),
+  info:(:),
   // 其他参数
   leading: 1.5em,
   spacing: 1.25em,
   justify: true,
   first-line-indent: 2em,
-  numbering: custom-numbering.with(first-level: "", depth: 3, "1.1 "),
+  numbering: custom-numbering.with(depth: 3, "1.1 "),
   // 正文字体与字号参数
   text-args: auto,
   // 标题字体与字号
-  heading-font: auto,
-  heading-size: (字号.小二, 字号.小三, 字号.小四),
-  heading-weight: ("bold", "bold", "regular"),
+  heading-font: (字体.黑体, 字体.宋体),
+  heading-size: (字号.小三, 字号.小四, 字号.小四),
+  heading-weight: ("bold", "regular", "regular"),
   heading-top-vspace: (20pt, 4pt),
   heading-bottom-vspace: (20pt, 8pt),
   heading-pagebreak: (true, false),
-  heading-align: (center, auto),
+  heading-align: (auto, auto),
   // 页眉
   header-render: auto,
   header-vspace: 0em,
@@ -94,19 +95,28 @@
     
   set figure.caption(separator: separator)
 
-  // 3.6 代码块不使用居中对齐
-  show figure.where(kind: "i-figured-raw"): it => {
-    let dic = it.fields()
-    let _ = if "body" in dic { dic.remove("body") }
-    let _ = if "label" in dic { dic.remove("label") }
-    let _ = if "counter" in dic { dic.remove("counter") }
+  // 3.6 表格头黑体五号 + 表格内容宋体五号
 
-  let fig = figure(text(par(it.body,justify: false,leading:0.65em),size: 12pt),
-      ..dic,kind: "f" + repr(it.kind))
-  fig
-}
+  show figure: set text(font: fonts.宋体, size: 字号.五号)
+  show figure.caption: set text(font: fonts.黑体, size: 字号.五号)
 
-  // 3.7 优化列表显示
+  // 3.7 代码块不使用居中对齐
+
+  //show figure.where(kind: "i-figured-raw"): it => {
+  //  let dic = it.fields()
+  //  let _ = if "body" in dic { dic.remove("body") }
+  //  let _ = if "label" in dic { dic.remove("label") }
+  //  let _ = if "counter" in dic { dic.remove("counter") }
+  //
+  //let fig = figure(text(par(it.body,justify: false,leading:0.65em),size: 12pt),
+  //    ..dic,kind: "f" + repr(it.kind))
+  //fig
+  //}  // FIXME: 会导致代码块计数混乱
+  
+  // 3.8 有序列表样式
+  set enum(numbering: "(1) .")
+
+  // 3.9 优化列表显示
   //     术语列表 terms 不应该缩进
   show terms: set par(first-line-indent: 0pt)
 
@@ -127,7 +137,16 @@
     v(array-at(heading-bottom-vspace, it.level))
     fake-par
   }
-  // 4.3 标题居中与自动换页
+  // 4.3 第一页增加文章标题
+  show heading: it => {
+    if(it.level == 1 and counter(heading).get().at(0) ==1){
+      align(center)[#text(font: fonts.黑体, size: 字号.小二, weight: "bold")[#info.title]]
+      it
+    }else{
+      it
+    }  
+  }
+  // 4.4 标题居中与自动换页
   show heading: it => {
     if (array-at(heading-pagebreak, it.level)) {
       // 如果打上了 no-auto-pagebreak 标签，则不自动换页
