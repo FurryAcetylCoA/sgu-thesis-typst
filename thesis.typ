@@ -12,8 +12,8 @@
   // anonymous: true,  // 盲审模式
   twoside: twoside,  // 双面模式，会加入空白页，便于打印
   // 可自定义字体，先英文字体后中文字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
-   fonts: (楷体: ("Times New Roman", "LXGW WenKai GB"),
-           仿宋: ("Times New Roman", "Zhuque Fangsong (technical preview)")),
+  //fonts: (楷体: ("Times New Roman", "LXGW WenKai GB"),
+  //        仿宋: ("Times New Roman", "Zhuque Fangsong (technical preview)")),
 
   info: (
     title: ("基于ChatGPT的狗屁通生成器"),
