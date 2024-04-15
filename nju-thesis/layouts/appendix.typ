@@ -10,7 +10,11 @@
   show-figure: i-figured.show-figure.with(numbering: "A.1"),
   // equation 计数
   show-equation: i-figured.show-equation.with(numbering: "(A.1)"),
-  it,
+  // 其他参数
+  title: "附录",
+  outlined: true,
+  twoside: false,
+  body,
 ) = {
   fonts = 字体 + fonts
   set heading(numbering: numbering)
@@ -19,5 +23,12 @@
   show figure: show-figure
   // 设置 equation 的编号
   show math.equation.where(block: true): show-equation
-  it
+  pagebreak(weak: true, to: if twoside { "odd" })
+  // 显示标题
+  [
+    #set text(font: fonts.黑体, size: 字号.小四, weight: "bold")
+    #set align(center)
+    #heading(level: 1, numbering: numbering, outlined: outlined, title) <no-auto-pagebreak>
+  ]
+  body
 }

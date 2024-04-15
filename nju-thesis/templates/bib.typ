@@ -1,25 +1,27 @@
 #import "../utils/style.typ": 字号, 字体
 
 // 致谢页
-#let acknowledgement(
+#let bib(
   // documentclass 传入参数
   fonts: (:),
-  anonymous: false,
   twoside: false,
   // 其他参数
-  title: "致谢",
+  title: "参考文献",
+  path: (:),
   outlined: true,
-  body,
+  style: "../assets/china-national-standard-gb-t-7714-2015-numeric.csl",
 ) = {
   fonts = 字体 + fonts
-  if (not anonymous) {
-    counter(heading).update(0)
-    pagebreak(weak: true, to: if twoside { "odd" })
-    [
+  pagebreak(weak: true, to: if twoside { "odd" })
+  // 显示标题
+  [
       #set text(font: fonts.黑体, size: 字号.小四, weight: "bold")
       #set align(center)
       #heading(level: 1, numbering: none, outlined: outlined, title) <no-auto-pagebreak>
-    ]
-    body
-  }
+  ]
+  // 相对路径修正
+  path = path.map((i) => ("../../" + i))
+
+  bibliography(path, style: style, title: none)
 }
+

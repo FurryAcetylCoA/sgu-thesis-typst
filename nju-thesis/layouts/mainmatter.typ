@@ -139,8 +139,10 @@
   }
   // 4.3 第一页增加文章标题
   show heading: it => {
-    if(it.level == 1 and counter(heading).get().at(0) ==1){
-      align(center)[#text(font: fonts.黑体, size: 字号.小二, weight: "bold")[#info.title]]
+    if(it.level == 1 and counter(heading).get().at(0) ==1){      
+      if ("label" not in it.fields() or str(it.label) != "no-auto-pagebreak") {
+        align(center)[#text(font: fonts.黑体, size: 字号.小二, weight: "bold")[#info.title]]
+      }
       it
     }else{
       it

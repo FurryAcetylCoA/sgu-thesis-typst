@@ -6,8 +6,8 @@
 // #let twoside = true
 
 #let (
-  doc, preface, mainmatter, mainmatter-end, appendix,
-  fonts-display-page, cover, abstract, abstract-en, outline-page, list-of-figures, list-of-tables, notation, acknowledgement,
+  doc, preface, mainmatter, mainmatter-end, appendix,  fonts-display-page, cover, 
+  abstract, abstract-en, outline-page, list-of-figures, list-of-tables, notation, acknowledgement, bib
 ) = documentclass(
   // anonymous: true,  // 盲审模式
   twoside: twoside,  // 双面模式，会加入空白页，便于打印
@@ -202,14 +202,8 @@ def add(x, y):
   pagebreak() + " "
 }
 // 参考文献
-#bibliography(("bibs/ex01.bib", "bibs/ymlex.yml"),
-  style: "./china-national-standard-gb-t-7714-2015-numeric.csl"
-)
 
-
-
-// 正文结束标志，不可缺少
-#mainmatter-end()
+#bib(path:("bibs/ex01.bib", "bibs/ymlex.yml"))
 
 
 // 手动分页
@@ -220,7 +214,6 @@ def add(x, y):
 // 附录
 #show: appendix
 
-= 附录
 
 == 附录子标题
 
@@ -242,3 +235,6 @@ def add(x, y):
 #acknowledgement[
   感谢 NJU-LUG，提供 NJUThesis Typst 模板。
 ]
+
+// 正文结束标志，不可缺少
+#mainmatter-end()

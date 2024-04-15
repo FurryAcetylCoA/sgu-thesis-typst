@@ -17,6 +17,7 @@
 #import "templates/list-of-tables.typ": list-of-tables
 #import "templates/notation.typ": notation
 #import "templates/acknowledgement.typ": acknowledgement
+#import "templates/bib.typ": bib
 #import "utils/custom-numbering.typ": custom-numbering
 #import "utils/custom-heading.typ": heading-display, active-heading, current-heading
 #import "utils/custom-tablex.typ": *
@@ -174,5 +175,13 @@
         ..args,
       )
     },
+    // 参考文献页
+    bib: (..args) => {
+      bib(
+        twoside: twoside,
+        ..args,
+        fonts: fonts + args.named().at("fonts", default: (:)),
+      )
+    }
   )
 }
