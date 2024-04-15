@@ -114,7 +114,7 @@
   //}  // FIXME: 会导致代码块计数混乱
   
   // 3.8 有序列表样式
-  set enum(numbering: "(1) .")
+  set enum(numbering: "(1)")
 
   // 3.9 优化列表显示
   //     术语列表 terms 不应该缩进
