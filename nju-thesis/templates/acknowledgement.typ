@@ -20,6 +20,6 @@
       #set align(center)
       #heading(level: 1, numbering: none, outlined: outlined, title) <no-auto-pagebreak>
     ]
-    body
+    text(font: fonts.宋体, size: 字号.五号)[#body]
   }
 }

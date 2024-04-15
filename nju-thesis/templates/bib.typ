@@ -22,6 +22,7 @@
   // 相对路径修正
   path = path.map((i) => ("../../" + i))
 
+  show bibliography: set text(font: fonts.楷体,size: 字号.五号)
   bibliography(path, style: style, title: none)
 }
 
