@@ -47,7 +47,7 @@
   pagebreak(weak: true, to: if twoside { "odd" })
 
   [
-    #set text(font: "SimSun", size: 字号.五号)
+    #set text(font: fonts.宋体, size: 字号.五号)
     #set par(leading: leading, justify: true)
     #show par: set block(spacing: spacing)
 
