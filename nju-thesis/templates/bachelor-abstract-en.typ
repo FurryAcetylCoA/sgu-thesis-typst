@@ -46,25 +46,25 @@
   // 4.  正式渲染
   [
 
-    #set text(font: fonts.黑体, size: 字号.五号)
+    #set text(font: "Times New Roman", size: 字号.五号)
     #set par(leading: leading, justify: true)
     #show par: set block(spacing: spacing)
 
     #align(center)[
-      #set text(font: fonts.黑体, size: 字号.三号, weight: "bold")  
+      #set text(font: "Times New Roman", size: 字号.三号, weight: "bold")  
       #(("",)+ info.title-en).sum()
 
     ]
     #v(2em)
 
-    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[Abstract:]
+    #text(font: "Times New Roman", size: 字号.小四, weight: "bold")[Abstract:]
     #[
       #body
     ]
 
     #v(1em)
 
-    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[Key words:]
+    #text(font: "Times New Roman", size: 字号.小四, weight: "bold")[Key words:]
     #(("",)+ keywords.intersperse("; ")).sum()
   ]
 }
