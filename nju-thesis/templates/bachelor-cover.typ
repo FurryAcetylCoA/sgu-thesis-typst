@@ -127,7 +127,7 @@
   }
 
 
-  text(size: 字号.初号, font: fonts.宋体, spacing: 200%, weight: "bold")[毕 业 设 计]
+  text(size: 字号.初号, font: fonts.宋体, spacing: 400%, weight: "bold")[毕 业 设 计]
   
   if (anonymous) {
     v(132pt)
