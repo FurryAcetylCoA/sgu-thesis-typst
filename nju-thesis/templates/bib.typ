@@ -1,6 +1,6 @@
 #import "../utils/style.typ": 字号, 字体
 
-// 致谢页
+// 参考文献页
 #let bib(
   // documentclass 传入参数
   fonts: (:),
