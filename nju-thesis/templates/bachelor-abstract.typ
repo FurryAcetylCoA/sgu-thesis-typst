@@ -59,7 +59,7 @@
 
     #v(2em)
 
-    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[*摘要*：]
+    #text(font: fonts.黑体, size: 字号.小四, weight: "bold")[*摘　要*：]
     #[      
       #body
     ]
